@@ -22,12 +22,14 @@ export const projects = [
     githubLink: "https://github.com/UtkarshD04/ledger.lite"
   },
   {
-    title: "Weather Dashboard",
-    desc: "Real-time weather app using API integration and responsive design",
+    title: "ADS Restaurant & Cafe",
+    desc: "Modern restaurant website with menu display and online reservation system",
     gradient: "from-emerald-500 via-green-600 to-teal-600",
     icon: Globe,
-    tech: ["React", "API", "CSS3", "JavaScript"],
-    category: "API Project"
+    tech: ["React", "Tailwind", "JavaScript", "CSS3"],
+    category: "Restaurant App",
+    liveLink: "upcoming",
+    githubLink: "https://github.com/UtkarshD04/ads-restaurant"
   }
 ];
 

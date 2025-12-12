@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ArrowRight, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Download, Code, Zap, Database, Globe } from 'lucide-react';
 import LoadingScreen from './components/LoadingScreen';
 import { projects, expertise, techStack, achievements } from './data/portfolioData';
 
@@ -11,11 +11,8 @@ export default function Portfolio() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [currentSkill, setCurrentSkill] = useState(0);
   const [nameRotate, setNameRotate] = useState(false);
   const canvasRef = useRef(null);
-
-  const rotatingSkills = ['React Developer', 'MERN Stack', 'UI/UX Designer', 'Problem Solver'];
 
   // Initialize particles
   useEffect(() => {
@@ -34,11 +31,6 @@ export default function Portfolio() {
       setIsLoaded(true);
     }, 2000);
 
-    const skillInterval = setInterval(() => {
-      setCurrentSkill((prev) => (prev + 1) % 4);
-    }, 3000);
-
-    return () => clearInterval(skillInterval);
   }, []);
 
   // Animate particles
@@ -126,7 +118,7 @@ export default function Portfolio() {
       {/* Custom Cursor */}
       <div className="fixed inset-0 pointer-events-none z-50">
         <div 
-          className="absolute w-8 h-8 border-2 border-purple-500 rounded-full mix-blend-difference transition-transform duration-100"
+          className="absolute w-8 h-8 border-2 border-purple-500 rounded-full mix-blend-difference transition-transform duration-1000"
           style={{
             left: mousePosition.x - 16,
             top: mousePosition.y - 16,
@@ -178,7 +170,7 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section 
         id="home" 
-        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        className="min-h-screen py-24 flex items-center justify-center relative overflow-hidden"
         style={{
           opacity: scrollY > 100 ? 0.8 : 1,
           transform: `scale(${scrollY > 100 ? 0.95 : 1})`,
@@ -271,16 +263,10 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-purple-500 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-purple-500 rounded-full animate-pulse" />
-          </div>
-        </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-32 px-6 relative">
+      <section id="about" className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -301,7 +287,6 @@ export default function Portfolio() {
               <div className="grid grid-cols-2 gap-4">
                 {['HTML & CSS', 'JavaScript & React', 'Responsive Design', 'Git & GitHub'].map((skill, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full" />
                     <span className="text-gray-300">{skill}</span>
                   </div>
                 ))}
@@ -312,18 +297,17 @@ export default function Portfolio() {
               {/* Profile Image Placeholder */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 border border-gray-800 aspect-square flex items-center justify-center overflow-hidden">
+                <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 border border-gray-800 w-full h-[400px] flex items-center justify-center overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-cyan-600/10 animate-gradient bg-[length:200%_auto]"></div>
-                  <div className="text-center space-y-6 relative z-10">
+                  <div className="text-center space-y-4 relative z-10">
                     <div className="relative">
                       <Code size={64} className="mx-auto text-purple-400 animate-pulse" />
                       <div className="absolute -inset-4 bg-purple-500/20 rounded-full blur-xl animate-pulse"></div>
                     </div>
                     <div>
                       <p className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2 transition-all duration-500">
-                        {rotatingSkills[currentSkill]}
+                        Full-Stack Developer
                       </p>
-                      <p className="text-gray-400 mb-4">MERN Stack Enthusiast</p>
                     </div>
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center justify-center gap-2 text-gray-500 hover:text-purple-400 transition-colors cursor-pointer">
@@ -339,16 +323,6 @@ export default function Portfolio() {
                         <span>Full Stack Projects</span>
                       </div>
                     </div>
-                    <div className="flex gap-2 justify-center mt-4">
-                      {[0, 1, 2, 3].map((i) => (
-                        <div
-                          key={i}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            currentSkill === i ? 'bg-purple-500 w-8' : 'bg-gray-600'
-                          }`}
-                        ></div>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </div>
@@ -358,7 +332,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 px-6 relative">
+      <section id="projects" className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-black mb-6">
@@ -420,10 +394,12 @@ export default function Portfolio() {
                     {/* Buttons */}
                     <div className="flex gap-3">
                       <button 
-                        onClick={() => project.liveLink && window.open(project.liveLink, '_blank')}
-                        className="flex-1 py-2 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-xl border border-purple-500/30 font-semibold hover:from-purple-600 hover:to-cyan-600 transition-all text-sm cursor-pointer"
+                        onClick={() => project.liveLink && project.liveLink !== 'upcoming' && window.open(project.liveLink, '_blank')}
+                        className={`flex-1 py-2 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-xl border border-purple-500/30 font-semibold transition-all text-sm ${
+                          project.liveLink === 'upcoming' ? 'cursor-not-allowed opacity-60' : 'hover:from-purple-600 hover:to-cyan-600 cursor-pointer'
+                        }`}
                       >
-                        Live Demo
+                        {project.liveLink === 'upcoming' ? 'Upcoming' : 'Live Demo'}
                       </button>
                       <button 
                         onClick={() => project.githubLink && window.open(project.githubLink, '_blank')}
@@ -441,7 +417,7 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-32 px-6 relative">
+      <section id="skills" className="py-24 px-6 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/10 to-black" />
         
         <div className="max-w-6xl mx-auto relative z-10">
@@ -506,7 +482,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 relative">
+      <section id="contact" className="py-24 px-6 relative">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
             LET'S CREATE<br />
